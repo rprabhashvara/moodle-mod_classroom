@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="mod/classroom/db" VERSION="20180120" COMMENT="XMLDB file for Moodle mod/classroom"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="classroom" COMMENT="WebRTC virtual classroom instance table">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true"/>
+        <FIELD NAME="course" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" COMMENT="Course classroom activity belongs to"/>
+        <FIELD NAME="name" TYPE="char" LENGTH="255" NOTNULL="true" SEQUENCE="false" COMMENT="name field for classroom instances"/>
+        <FIELD NAME="intro" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="General introduction of the classroom activity"/>
+        <FIELD NAME="introformat" TYPE="int" LENGTH="4" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false" COMMENT="Format of the intro field (MOODLE, HTML, MARKDOWN...)"/>
+        <FIELD NAME="time" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" COMMENT="Time of the classroom to be held" />
+        <FIELD NAME="is_initiated" TYPE="int" LENGTH="1" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" DEFAULT="0" COMMENT="is classroom initiated by teacher" />
+        <FIELD NAME="is_terminated" TYPE="int" LENGTH="1" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" DEFAULT="0" COMMENT="is classroom terminated by teacher" />
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false"/>
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="course" UNIQUE="false" FIELDS="course"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="classroom_offers" COMMENT="WebRTC virtual classroom offers table">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true"/>
+        <FIELD NAME="user" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" COMMENT="user offer belongs to"/>
+        <FIELD NAME="classroom" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" COMMENT="classroom instance offer belongs to"/>
+        <FIELD NAME="is_instructor" TYPE="int" LENGTH="1" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" DEFALUT="0" COMMENT="does offer belong to a teacher"/>
+        <FIELD NAME="locked_by" TYPE="int" LENGTH="10" NOTNULL="false" UNSIGNED="true" SEQUENCE="false" DEFALUT="NULL" COMMENT="user who has locked this offer"/>
+        <FIELD NAME="offer" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="offer data"/>
+        <FIELD NAME="webcam_stream_id" TYPE="char" LENGTH="255" NOTNULL="false" DEFAULT="NULL" SEQUENCE="false" COMMENT="webcam stream data"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false"/>
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="user" UNIQUE="false" FIELDS="user"/>
+        <INDEX NAME="classroom" UNIQUE="false" FIELDS="classroom"/>
+        <INDEX NAME="is_instructor" UNIQUE="false" FIELDS="is_instructor"/>
+        <INDEX NAME="locked_by" UNIQUE="false" FIELDS="locked_by"/>
+      </INDEXES>
+    </TABLE>
+    <TABLE NAME="classroom_answers" COMMENT="WebRTC virtual classroom answers table">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="true"/>
+        <FIELD NAME="user" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" COMMENT="user answer belongs to"/>
+        <FIELD NAME="offer" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false" COMMENT="offer instance answer belongs to"/>
+        <FIELD NAME="answer" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="answer data"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" SEQUENCE="false"/>
+        <FIELD NAME="timemodified" TYPE="int" LENGTH="10" NOTNULL="true" UNSIGNED="true" DEFAULT="0" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+      <INDEXES>
+        <INDEX NAME="user" UNIQUE="false" FIELDS="user"/>
+        <INDEX NAME="offer" UNIQUE="false" FIELDS="offer"/>
+      </INDEXES>
+    </TABLE>
+  </TABLES>
+</XMLDB>

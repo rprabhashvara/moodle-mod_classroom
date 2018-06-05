@@ -1,0 +1,82 @@
+<header role="banner" class="pos-f-t navbar navbar-full navbar-light bg-faded navbar-static-top moodle-has-zindex">
+
+        <div class="container-fluid navbar-nav">
+
+            <a href="https://www.moodleclassroom.com" class="navbar-brand
+                    hidden-sm-down
+                    ">
+                <span class="site-name hidden-sm-down">moodleclassroom</span>
+            </a>
+
+        </div>
+        <div class="pull-right" style="margin-top: -25px;margin-right:25px;">
+            <a href="#" class="terminate">Terminate</a>
+        </div>
+    </header>
+
+<div class="row">
+    <div class="col-xs-3 webcam_stream_container">
+        <div class="col-xs-12">
+            <video poster="/mod/classroom/pix/webcam.png" class="webcam_stream"></video>
+        </div>
+        <div class="col-xs-8 offset-xs-2" style="margin-top:15px;">
+            <button class="btn btn-success btn-block btn-initiate" disabled style="display:none">Inititate</button>
+            <button class="btn btn-primary btn-block btn-join" disabled style="display:none">Join</button>
+            <!--<button class="btn btn-primary btn-block btn-join">Join</button> -->
+        </div>
+    </div>
+    <div class="col-xs-5 classroom_container">
+
+      <canvas class="canvas"></canvas>
+      <button class="btn btn-danger pull-right clear_canvas" disabled style="display: none">Clear</button>
+
+      <div class="card" style="margin-top:50px;min-height: 200px;padding-top: 10px">
+          <div class="card-body">
+            <div class="col-xs-12">
+                <h4>Users available for one-to-one chat</h4>
+                <div class="col-xs-12 chat-users" style="margin-top: 15px;">
+
+                </div>
+            </div>
+            <div style="clear:both"></div>
+          </div>
+      </div>
+
+    </div>
+
+    <div class="col-xs-4 chat_container">
+        <!-- chat tabs -->
+        <ul class="nav nav-tabs chat_tabs" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="public_tab" data-toggle="tab" href="#public" role="tab" aria-controls="home" aria-selected="true">Public Chat</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="private_tab" data-toggle="tab" href="#private" role="tab" aria-controls="profile" aria-selected="false">Private Chat</a>
+          </li>
+        </ul>
+        <div class="tab-content chat_tab_contents">
+          <div class="tab-pane show active" id="public" role="tabpanel" aria-labelledby="public_tab">
+              <ul class="messages"></ul>
+          </div>
+
+          <!-- private chat -->
+          <div class="tab-pane fade" id="private" role="tabpanel" aria-labelledby="private_tab">
+              
+          </div>
+          <!-- end private chat -->
+
+
+        </div>
+        <!-- end chat tabs -->
+        <!-- chat send -->
+        <div class="space"></div>
+        <div class="col-xs-9 chat_input">
+            <input type="text" class="form-control" placeholder="Type your message here..">
+        </div>
+        <div class="col-xs-3">
+            <button type="button" class="btn btn-primary btn-block btn-send">Send</button>
+        </div>
+
+    </div>
+
+</div>
